@@ -1,0 +1,23 @@
+<div class="container">
+<div class="screen">
+  <div class="screen__content">
+    <input type="number" class="login__input" [(ngModel)]="idUser" >
+  <button class="login__submit" (click)="searchId()">Buscar</button>
+  <mat-card class="example-card" style="margin-top: 10px">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{user.data.first_name}} {{user.data.last_name}}</mat-card-title>
+      <mat-card-subtitle>{{user.data.id}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="user.data.avatar" alt="Foto de perfil">
+    <mat-card-content>
+      <p>
+        Email: {{user.data.email}}
+      </p>
+    </mat-card-content>
+  </mat-card>
+  </div>
+</div>
+</div>
+
+
