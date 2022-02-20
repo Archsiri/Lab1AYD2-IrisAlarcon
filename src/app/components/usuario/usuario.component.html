@@ -1,0 +1,15 @@
+<div>
+  <input type="number" [(ngModel)]="idUser" >
+  <button (click)="searchId()">Buscar</button>
+
+</div>
+<div *ngIf="user">
+  <h2>Usuario</h2>
+  <p>id: {{user.data.id}}</p>
+  <p>email: {{user.data.email}}</p>
+  <p>first name: {{user.data.first_name}}</p>
+  <p>last name: {{user.data.last_name}}</p>
+  <img [src]="user.data.avatar">
+
+
+</div>
