@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {map, Observable} from 'rxjs';
+import {User} from "../models/user.model";
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +14,11 @@ export class ReqresapiService {
   constructor(private http: HttpClient) { }
 
   getAllUsers(){
-    return this.http.get('https://reqres.in/api/users?page=2');
+    return this.http.get('https://reqres.in/api/users?page=2').pipe(map(data => data));
   }
 
-  getUser(idUser: number){
-    return this.http.get(this.uri+'users/'+idUser)
+  getUser(idUser: number): Observable<any>{
+    return this.http.get(this.uri+'users/'+idUser).pipe(map(data => data));
   }
 
   createUser(userName: string, userJob: string){
