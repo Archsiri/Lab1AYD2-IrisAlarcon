@@ -1,0 +1,10 @@
+---
+- host: appserver
+  task:
+    - name: Copy files to remote host
+      copy:
+        src: dist/lab1ayd2
+        dest: /var/www/html
+        owner: www-data
+        group: www-data
+        mode: 0755
