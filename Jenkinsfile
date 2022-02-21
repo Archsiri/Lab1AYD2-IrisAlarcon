@@ -4,20 +4,19 @@ pipeline {
 
     stage('Git') {
       steps {
-        git 'https://github.com/Archsiri/Lab1AYD2-IrisAlarcon.git'
+        checkout changelog: true, poll: true, scm: [$class: 'GitSCM', branches: [[name: '*/main']], browser: [$class: 'GithubWeb', repoUrl: 'https://github.com/Archsiri/Lab1AYD2-IrisAlarcon'], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'Github', url: 'https://github.com/Archsiri/Lab1AYD2-IrisAlarcon.git']]]
       }
     }
+     stage('Install dependencies') {
+            steps {
+                script {
+                    nodejs(nodeJSInstallationName:'NodeJs-Lab1-AYD2'){
+                        sh 'npm install'
+                    }
+                }
+            }
+        }
 
-    stage('Install dependencies') {
-      steps {
-          script{
-              nodejs(nodeJSInstallationName:'NodeJs-Lab1-AYD2'){
-                  sh 'npm install'
-              }
-          }
-
-      }
-    }
 
     stage('Build project'){
         steps{
@@ -30,7 +29,7 @@ pipeline {
      stage('Docker Build') {
             steps {
                 script {
-                    sh 'docker build -f dockerfile -t lab1ayd2 .'
+                    sh 'docker build -f Dockerfile -t lab1ayd2 .'
                 }
             }
         }
